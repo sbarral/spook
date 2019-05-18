@@ -1,7 +1,7 @@
 [package]
 name = "spook"
 description = "File watcher geared towards automatic HTML generation and autoreload."
-keywords = ["watcher", "server-sent events", "autoreload", "live reload"]
+keywords = ["watcher", "SSE", "autoreload"]
 categories = ["command-line-utilities", "filesystem", "development-tools"]
 readme = "README.md"
 license = "MIT/Apache-2.0"
