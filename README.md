@@ -43,7 +43,7 @@ $ spook --help
 
 This software is most definitely of the no-warranty, provided-as-is, mainly-tested-on-my-linux-box kind. But it *should* work on Linux/Mac/Windows, and with some luck on a couple of other OSes.
 
-Server-sent events are supported out-of-the-box by all decent browsers. That means, if you insist on using Explorer or Edge you will have to got through some hoops and play with one of the freely available polyfills for the javascript `EventSource` interface.
+Server-sent events should be supported out-of-the-box on nearly all modern browsers.
 
 
 ## Installation
@@ -63,4 +63,4 @@ That's it.
 
 This software is licensed under the [Apache License, Version 2.0](LICENSE-APACHE) or the [MIT license](LICENSE-MIT), at your option.
 
-Copyright (c) 2019 Serge Barral.
+Copyright (c) 2022 Serge Barral.
