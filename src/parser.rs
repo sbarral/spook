@@ -95,23 +95,20 @@ pub fn parse_args() -> ArgList {
         )
         .get_matches();
 
-    // Deserialize arguments.
-    let mut arg_list = ArgList::default();
-
     // Verbose flag.
-    arg_list.verbose = matches.is_present("VERBOSE");
+    let verbose = matches.is_present("VERBOSE");
 
     // Init flag.
-    arg_list.init = matches.is_present("INIT");
+    let init = matches.is_present("INIT");
 
     // Notification period.
-    arg_list.notify_period = matches
+    let notify_period = matches
         .value_of("PERIOD")
         .map(|s| s.parse::<u64>().unwrap()) // already checked by validator
         .unwrap_or(DEFAULT_NOTIFY_PERIOD);
 
     // Signal with optional name and port if specified, or default values.
-    arg_list.event_out = if matches.is_present("SIGNAL") {
+    let event_out = if matches.is_present("SIGNAL") {
         Some(Event {
             name: matches
                 .value_of("NAME")
@@ -127,19 +124,26 @@ pub fn parse_args() -> ArgList {
     };
 
     // Files to be watched
-    arg_list.watched_files = matches
+    let watched_files = matches
         .values_of_os("FILES")
         .map(|iter| iter.map(|s| s.to_owned()).collect::<Vec<_>>())
         .unwrap_or_default();
 
     // Sub-command.
-    arg_list.sub_cmd_args = matches
+    let sub_cmd_args = matches
         .values_of_os("CMD [ARGS]")
         .map(|iter| iter.map(|s| s.to_owned()).collect::<Vec<_>>())
         .unwrap_or_default();
 
     // Success.
-    arg_list
+    ArgList {
+        sub_cmd_args,
+        watched_files,
+        event_out,
+        notify_period,
+        verbose,
+        init,
+    }
 }
 
 fn validate_minmax<T: FromStr + Ord>(

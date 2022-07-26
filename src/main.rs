@@ -56,7 +56,7 @@ fn main() -> Result<()> {
     let arg_list = parser::parse_args();
     // Set up the file watcher.
     let (tx, rx) = channel();
-    let mut watcher = watcher(tx.clone(), Duration::from_millis(arg_list.notify_period)).unwrap();
+    let mut watcher = watcher(tx, Duration::from_millis(arg_list.notify_period)).unwrap();
     for file in &arg_list.watched_files {
         watcher
             .watch(file, RecursiveMode::Recursive)

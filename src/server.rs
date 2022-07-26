@@ -12,13 +12,11 @@ pub fn manage_connections(event_tx_list: Arc<Mutex<Vec<Sender<()>>>>, event: Eve
         concat!(env!("CARGO_PKG_NAME"), ": error starting the server"),
     );
 
-    for stream in listener.incoming() {
-        if let Ok(stream) = stream {
-            let (event_tx, event_rx) = channel();
-            event_tx_list.lock().unwrap().push(event_tx);
-            let event_name = event.name.clone();
-            thread::spawn(move || serve_events(event_rx, stream, event_name));
-        }
+    for stream in listener.incoming().flatten() {
+        let (event_tx, event_rx) = channel();
+        event_tx_list.lock().unwrap().push(event_tx);
+        let event_name = event.name.clone();
+        thread::spawn(move || serve_events(event_rx, stream, event_name));
     }
 }
 
