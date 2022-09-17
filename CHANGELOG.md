@@ -1,3 +1,7 @@
+# 0.1.2 (2022-09-17)
+
+Remove transitive dependency on `ansi_term`, which is unmaintained. Fixes issue [#4](https://github.com/sbarral/spook/security/dependabot/4)
+
 # 0.1.1 (2022-07-26)
 
 User-visible changes:

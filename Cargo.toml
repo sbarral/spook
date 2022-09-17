@@ -5,7 +5,7 @@ keywords = ["watcher", "SSE", "autoreload"]
 categories = ["command-line-utilities", "filesystem", "development-tools"]
 readme = "README.md"
 license = "MIT/Apache-2.0"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Serge Barral <serge.barral@quintescience.com>"]
 repository = "https://github.com/sbarral/spook"
 homepage = "https://github.com/sbarral/spook"
@@ -14,4 +14,4 @@ edition = "2018"
 [dependencies]
 notify = "4.0.17"
 httparse = "1.3.3"
-clap = "2.33"
+clap = {version = "2.34", default-features = false, features = [ "suggestions" ]}
